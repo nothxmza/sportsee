@@ -8,3 +8,36 @@ export const adaptPerformance = ({data}) => {
 	}
 	return adaptedData;
 }
+
+export const adaptUserData = ({data}) => {
+	const adaptedData = {
+		id: data.id,
+		score: data.todayScore || data.score,
+		userInfos: {
+			firstName: data.userInfos.firstName,
+			lastName: data.userInfos.lastName,
+			age: data.userInfos.age,
+		},
+		keyData: [{
+			value: data.keyData.calorieCount,
+			type:"Calories",
+			unit: "kCal"
+		},
+		{
+			value: data.keyData.proteinCount,
+			type:"Proteines",
+			unit: "g"
+		},
+		{
+			value: data.keyData.carbohydrateCount,
+			type:"Glucides",
+			unit: "g"
+		},
+		{
+			value: data.keyData.lipidCount,
+			type:"Lipides",
+			unit: "g"
+		}]
+	}
+	return adaptedData;
+}

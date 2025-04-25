@@ -6,7 +6,7 @@ export const BarCharts = ({data}) => {
 console.log("data", data.data.sessions);
 
     return (
-		<div style={{ width: "100%", height: "380px"}}>
+		<div style={{ width: "100%", height: "200px"}}>
 			<ResponsiveContainer width="100%" height="100%">
 					<BarChart
 					data={data.data.sessions}

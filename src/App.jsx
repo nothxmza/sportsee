@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 
-import { adaptPerformance } from './utils/adaptData'
+import { adaptPerformance, adaptUserData } from './utils/adaptData'
 
 import { Api } from './api/api'
 import { BarCharts } from './components/barChart';
+import { Card } from './components/Card';
 
 const getUser = async ()  => {
 	const data = await Api.getUserData(12);
-	return data.data;
+	return adaptUserData(data);
 }
 const getUserActivity = async ()  => {
 	const data = await Api.getUserActivity(12);
@@ -58,16 +59,25 @@ return (
 			</h1>
 			<p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
 		</div>
-		<div style={{display: "flex", justifyContent: "space-between", marginTop: "50px", width: "100%", gap: "20px"}}>
-			<div style={{ width: "70%"}}>
-				<div style={{ width: "100%", height: "480px", backgroundColor: "#FBFBFB", borderRadius: "5px", padding: "20px 0 20px 20px", display: "flex", alignItems: "center", justifyItems: "center"}}>
+		<div style={{display: "flex", justifyContent: "space-between", marginTop: "50px", marginBottom: "50px",width: "100%", gap: "20px"}}>
+			<div style={{ width: "75%", display: "flex", flexDirection: "column", gap: "40px"}}>
+				<div style={{ width: "100%", height: "300px", backgroundColor: "#FBFBFB", borderRadius: "5px", padding: "20px 0 20px 20px", display: "flex", alignItems: "end", justifyItems: "center"}}>
 					<BarCharts data={userActivity}/>
 				</div>
-				<div style={{ width: "100%", height: "500px", backgroundColor: "#FFFFFF"}}>
-					<BarCharts data={userActivity}/>
+				<div style={{ width: "100%", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px"}}>
+					<div style={{ height: "300px", backgroundColor: "red", borderRadius: "5px", padding: "20px 0 20px 20px", display: "flex", alignItems: "center", justifyItems: "center"}}>
+					</div>
+					<div style={{ height: "300px", backgroundColor: "red", borderRadius: "5px", padding: "20px 0 20px 20px", display: "flex", alignItems: "center", justifyItems: "center"}}>
+					</div>
+					<div style={{ height: "300px", backgroundColor: "red", borderRadius: "5px", padding: "20px 0 20px 20px", display: "flex", alignItems: "center", justifyItems: "center"}}>
+					</div>
+
 				</div>
 			</div>
-			<div style={{ width: "30%", backgroundColor: "#FF0000", borderRadius: "5px", padding: "20px"}}>
+			<div style={{ width: "25%", display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "20px"}}>
+				{userData.keyData &&  userData.keyData.map((data, index) => (
+					<Card key={index} data={data}/>
+				))}
 			</div>
 		</div>
 		</>
