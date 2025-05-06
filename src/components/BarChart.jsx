@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 
 export const BarCharts = ({data}) => {
 	return (
@@ -9,13 +9,16 @@ export const BarCharts = ({data}) => {
 				<BarChart
 					data={data.data.sessions}
 					margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+					barSize={7}
+					barGap={8}
 				>
+					<CartesianGrid strokeDasharray="3" vertical={false} />
 					<YAxis  dataKey="calories" orientation="right" stroke="#9B9EAC"  tickLine={false} axisLine={false}/>
 					<XAxis dataKey="day" stroke="#9B9EAC"  tickLine={false} />
 					<Tooltip />
 					<Legend align="right" verticalAlign="top" iconType="circle" iconSize={10} wrapperStyle={{ top: -50, right: 50}} />
-					<Bar dataKey="kilogram" fill="#282D30" radius={6} barSize={15}/>
-					<Bar dataKey="calories" fill="#E60000"  radius={6} barSize={15}/>
+					<Bar dataKey="kilogram" fill="#282D30" radius={6} name="Poids (kg)"/>
+					<Bar dataKey="calories" fill="#E60000"  radius={6} name="Calories brûlées (kCal)"/>
 				</BarChart>
 			</ResponsiveContainer>
 		</div>

@@ -7,6 +7,7 @@ import { BarCharts } from './components/barChart';
 import { Card } from './components/Card';
 import { LineCharts } from './components/LineChart';
 import { RadarCharts } from './components/RadarChart';
+import { ProgressCircle } from './components/ProgressCircle';
 
 const getUser = async ()  => {
 	const data = await Api.getUserData(12);
@@ -74,10 +75,11 @@ return (
 					<div style={{ height: "300px", borderRadius: "5px", padding: "20px", display: "flex", alignItems: "center", justifyItems: "center", backgroundColor: "#FF0000"}}>
 						<LineCharts data={userAverageSession}/>
 					</div>
-					<div style={{ height: "300px", borderRadius: "5px",backgroundColor: "black", padding: "0px", display: "flex", alignItems: "center", justifyItems: "center"}}>
+					<div style={{ height: "300px", borderRadius: "5px",backgroundColor: "#282D30", padding: "0px", display: "flex", alignItems: "center", justifyItems: "center"}}>
 						<RadarCharts data={userPerformance}/>
 					</div>
-					<div style={{ height: "300px", backgroundColor: "red", borderRadius: "5px", padding: "20px 0 20px 20px", display: "flex", alignItems: "center", justifyItems: "center"}}>
+					<div style={{ height: "300px", borderRadius: "5px", display: "flex", alignItems: "center", justifyItems: "center", backgroundColor: "#FBFBFB"}}>
+						<ProgressCircle data={userData}/>
 					</div>
 				</div>
 			</div>
