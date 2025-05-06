@@ -1,9 +1,19 @@
 export const adaptPerformance = ({data}) => {
+
+	const kindTranslations = {
+		cardio: "Cardio",
+		energy: "Énergie",
+		endurance: "Endurance",
+		strength: "Force",
+		speed: "Vitesse",
+		"intensity": "Intensité",
+	}
+
 	const adaptedData = {
 		userId: data.userId,
 		data: data.data.map((i) => ({
 			value: i.value,
-			kind: data.kind[i.kind],
+			kind: kindTranslations[data.kind[i.kind]],
 		})),
 	}
 	return adaptedData;
