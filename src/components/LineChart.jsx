@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
 
 
 const CustomTooltip = ({ active, payload }) => {
@@ -12,18 +12,35 @@ const CustomTooltip = ({ active, payload }) => {
 	}
 }
 
+const CustomCursor = ({points, width}) => {
+	const { x, y } = points[0];
+	return (
+		<Rectangle
+			fill="#0000001A"
+			stroke="#0000001A"
+			x={x}
+			y={y}
+			width={width + 20}
+			height={300}
+		/>
+	)
+}
+
 export const LineCharts = ({data}) => {
+	const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
 	return(
-		<div style={{ width: "100%", height: "200px"}}>
-			<h2 style={{margin: 0, fontSize: 15}}>Durée moyenne des sessions</h2>
+		<div style={{ width: "100%", height: "100%", backgroundColor: "#FF0000", padding: "0px", position: "relative", borderRadius: "5px"}}>
+			<h2 style={{position: "absolute", color: "#FFFFFF99", fontSize: "15px", fontWeight: "bold", top: 20, left: 20}}>Durée moyenne des <br/> sessions</h2>
 			<ResponsiveContainer width="100%" height="100%">
 				<LineChart
 					data={data.data.sessions}
-					margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+					margin={{ top: 0, right: 20, left: 20, bottom: 30 }}
 				>
-					<XAxis dataKey="day" stroke="#FFFFFF" tickLine={false} axisLine={false} interval="preserveStartEnd"/>
-					<Tooltip content={<CustomTooltip/>}/>
-					<Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" strokeWidth={2} dot={false} />
+					<XAxis dataKey="day"  tickLine={false} axisLine={false} interval="preserveStartEnd" tickFormatter={(day) => daysOfWeek[day - 1]}
+						tickMargin={20} tick={{fontSize: 12, fill: "#FFFFFF83"}}/>
+					<Tooltip content={<CustomTooltip/>} cursor={<CustomCursor />}/>
+					<YAxis hide={true} domain={[0, "dataMax + 40"]} tickLine={false} axisLine={false} />
+					<Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" strokeWidth={2} dot={false}  activeDot={{stroke: "#FFFFFF99", strokeWidth: 10, r: 5}}/>
 				</LineChart>
 			</ResponsiveContainer>
 		</div>

@@ -72,7 +72,7 @@ return (
 					<BarCharts data={userActivity}/>
 				</div>
 				<div style={{ width: "100%", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px"}}>
-					<div style={{ height: "300px", borderRadius: "5px", padding: "20px", display: "flex", alignItems: "center", justifyItems: "center", backgroundColor: "#FF0000"}}>
+					<div style={{ height: "300px"}}>
 						<LineCharts data={userAverageSession}/>
 					</div>
 					<div style={{ height: "300px", borderRadius: "5px",backgroundColor: "#282D30", padding: "0px", display: "flex", alignItems: "center", justifyItems: "center"}}>
