@@ -27,7 +27,7 @@ export const ProgressCircle = ({data}) => {
 			</p>
 		</div>
 		<ResponsiveContainer width="100%" height="100%">
-			<PieChart width={300} height={300}>
+			<PieChart >
 				<Pie data={formatData} innerRadius={75} outerRadius={90} startAngle={-270} endAngle={90} dataKey="value">
 					{formatData.map((item, index) => (
 						<Cell key={`cell-${index}`} fill={COLORS[index]} />

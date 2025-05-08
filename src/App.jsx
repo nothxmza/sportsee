@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-
+import styled from 'styled-components';
 import { adaptPerformance, adaptUserData } from './utils/adaptData'
 
 import { Api } from './api/api'
@@ -25,6 +25,21 @@ const getUserPerformance = async ()  => {
 	const data = await Api.getUserPerformance(12);
 	return adaptPerformance(data);
 }
+
+
+
+const WrapperChart = styled.div`
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+
+	@media (max-width: 1200px) {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+	}
+`;
+
 
 function App() {
 const [userData, setUserData] = useState(null);
@@ -71,7 +86,7 @@ return (
 				<div style={{ width: "100%", height: "300px", backgroundColor: "#FBFBFB", borderRadius: "5px", padding: "20px 0 20px 20px", display: "flex", alignItems: "end", justifyItems: "center"}}>
 					<BarCharts data={userActivity}/>
 				</div>
-				<div style={{ width: "100%", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px"}}>
+				<WrapperChart>
 					<div style={{ height: "300px"}}>
 						<LineCharts data={userAverageSession}/>
 					</div>
@@ -81,7 +96,7 @@ return (
 					<div style={{ height: "300px", borderRadius: "5px", display: "flex", alignItems: "center", justifyItems: "center", backgroundColor: "#FBFBFB"}}>
 						<ProgressCircle data={userData}/>
 					</div>
-				</div>
+				</WrapperChart>
 			</div>
 			<div style={{ width: "20%", display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "20px"}}>
 				{userData.keyData &&  userData.keyData.map((data, index) => (

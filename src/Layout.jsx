@@ -26,7 +26,7 @@ export const Layout = ({children}) => {
 						<img src={icon3} className="logo" alt="Vite logo" />
 						<img src={icon4} className="logo" alt="Vite logo" />
 					</div>
-					<p style={{color: "white", rotate: "-90deg", width: "100px", fontSize: 12, fontWeight: 500 }}>testmle truc</p>
+					<p style={{color: "white", rotate: "-90deg", width: "200px", fontSize: 12, fontWeight: 500 }}>Copiryght, SportSee 2020</p>
 				</div>
 				<div style={{margin: "50px 50px 0 50px", width: "100%"}}>
 					{children}

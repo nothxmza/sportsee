@@ -8,7 +8,7 @@ export const RadarCharts = ({data}) => {
 			<RadarChart  data={data.data} >
 				<PolarGrid stroke="#FFFFFF"/>
 				<PolarAngleAxis dataKey="kind" stroke="#FFFFFF" tick={{className: "radar-text", fontSize: 10}}/>
-				<Radar name="user" dataKey="value" fill="#FF0101B2" stroke="#FF0101B2" />
+				<Radar name="stat" dataKey="value" fill="#FF0101B2" stroke="#FF0101B2" />
 				<Tooltip />
 			</RadarChart>
 		</ResponsiveContainer>
