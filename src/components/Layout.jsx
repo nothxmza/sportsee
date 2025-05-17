@@ -1,8 +1,9 @@
-import logo from './assets/logo.png'
-import icon1 from './assets/icon1.png'
-import icon2 from './assets/icon2.png'
-import icon3 from './assets/icon3.png'
-import icon4 from './assets/icon4.png'
+import logo from '../assets/logo.png'
+import icon1 from '../assets/icon1.png'
+import icon2 from '../assets/icon2.png'
+import icon3 from '../assets/icon3.png'
+import icon4 from '../assets/icon4.png'
+import { Link } from 'react-router'
 
 export const Layout = ({children}) => {
 	return (
@@ -11,7 +12,7 @@ export const Layout = ({children}) => {
 				<img src={logo} className="logo" alt="Vite logo" />
 				<ul style={{listStyle: "none", display: "flex", justifyContent: "space-around", width: "100%", padding: "0", margin: "0"}}>
 					<li>Accueil</li>
-					<li>Profil</li>
+					<Link to="/profil/12" style={{color: "white"}}> Profil</Link>
 					<li>Réglage</li>
 					<li>Communauté</li>
 				</ul>

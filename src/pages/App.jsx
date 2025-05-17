@@ -1,31 +1,14 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import { adaptPerformance, adaptUserData } from './utils/adaptData'
+import { adaptPerformance, adaptUserData } from '../utils/adaptData'
 
-import { Api } from './api/api'
-import { BarCharts } from './components/barChart';
-import { Card } from './components/Card';
-import { LineCharts } from './components/LineChart';
-import { RadarCharts } from './components/RadarChart';
-import { ProgressCircle } from './components/ProgressCircle';
-
-const getUser = async ()  => {
-	const data = await Api.getUserData(12);
-	return adaptUserData(data);
-}
-const getUserActivity = async ()  => {
-	const data = await Api.getUserActivity(12);
-	return data;
-}
-const getUserAverageSession = async ()  => {
-	const data = await Api.getUserAverageSession(12);
-	return data;
-}
-const getUserPerformance = async ()  => {
-	const data = await Api.getUserPerformance(12);
-	return adaptPerformance(data);
-}
-
+import { Api } from '../api/api'
+import { BarCharts } from '../components/barChart';
+import { Card } from '../components/Card';
+import { LineCharts } from '../components/LineChart';
+import { RadarCharts } from '../components/RadarChart';
+import { ProgressCircle } from '../components/ProgressCircle';
+import { useParams } from 'react-router';
 
 
 const WrapperChart = styled.div`
@@ -46,24 +29,36 @@ const [userData, setUserData] = useState(null);
 const [userActivity, setUserActivity] = useState(null);
 const [userAverageSession, setUserAverageSession] = useState(null);
 const [userPerformance, setUserPerformance] = useState(null);
+const [error, setError] = useState(false);
+
+const id = useParams().id || 12;
 
 useEffect(() => {
 	const fetchData = async () => {
-		const userData = await getUser();
-		setUserData(userData);
-		const userActivity = await getUserActivity();
-		setUserActivity(userActivity);
-		const userAverageSession = await getUserAverageSession();
-		setUserAverageSession(userAverageSession);
-		const userPerformance = await getUserPerformance();
-		setUserPerformance(userPerformance);
-		console.log("USER DATA ",userData);
-		console.log("USER ACTIVITY ",userActivity);
-		console.log("USER SESSion ",userAverageSession);
-		console.log("USER PERFORMANCE ",userPerformance);
+		try{
+			const userData = await Api.getUserData(id);
+			setUserData(adaptUserData(userData));
+			const userActivity = await Api.getUserActivity(id);
+			setUserActivity(userActivity);
+			const userAverageSession = await Api.getUserAverageSession(id);
+			setUserAverageSession(userAverageSession);
+			const userPerformance = await Api.getUserPerformance(id);
+			setUserPerformance(adaptPerformance(userPerformance));
+		} catch (e) {
+			setError(true);
+		}
 	}
 	fetchData();
-},[])
+},[id])
+
+
+if (error) {
+	return (
+		<div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
+			<h1>Erreur lors du chargement des données utilisateur</h1>
+		</div>
+	);
+}
 
 return (
 	<>
@@ -71,13 +66,9 @@ return (
 		<>
 		<div>
 			<h1 style={{margin: 0, padding: 0, fontSize: "48px", fontWeight: "500"}}>
-				{userData? (
-					<div>
-					Bonjour <span style={{color: "#E60000"}}>{userData.userInfos.firstName}</span>
-					</div>
-				) : (
-					<div>Loading...</div>
-				)}
+				<div>
+				Bonjour <span style={{color: "#E60000"}}>{userData.userInfos.firstName}</span>
+				</div>
 			</h1>
 			<p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
 		</div>
