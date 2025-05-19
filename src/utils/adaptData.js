@@ -6,7 +6,7 @@ export const adaptPerformance = ({data}) => {
 		endurance: "Endurance",
 		strength: "Force",
 		speed: "Vitesse",
-		"intensity": "Intensité",
+		intensity: "Intensité",
 	}
 
 	const adaptedData = {
