@@ -9,6 +9,7 @@ import { LineCharts } from '../components/LineChart';
 import { RadarCharts } from '../components/RadarChart';
 import { ProgressCircle } from '../components/ProgressCircle';
 import { useParams } from 'react-router';
+import { getUserById, getUserActivityById, getUserAverageSessionById, getUserPerformanceById } from '../api/mokedData';
 
 
 const WrapperChart = styled.div`
@@ -31,6 +32,7 @@ const [userAverageSession, setUserAverageSession] = useState(null);
 const [userPerformance, setUserPerformance] = useState(null);
 const [error, setError] = useState(false);
 
+const mocked = true;
 const id = useParams().id || 12;
 
 useEffect(() => {
@@ -48,8 +50,35 @@ useEffect(() => {
 			setError(true);
 		}
 	}
-	fetchData();
-},[id])
+	if (mocked === true) {
+		fetchData();
+	}else {
+		const userData = getUserById(id);
+		if(!userData) {
+			setError(true);
+			return;
+		}
+		setUserData(adaptUserData(userData));
+		const userActivity = getUserActivityById(id);
+		if(!userActivity) {
+			setError(true);
+			return;
+		}
+		setUserActivity(userActivity);
+		const userAverageSession = getUserAverageSessionById(id);
+		if(!userAverageSession) {
+			setError(true);
+			return;
+		}
+		setUserAverageSession(userAverageSession);
+		const userPerformance = getUserPerformanceById(id);
+		if(!userPerformance) {
+			setError(true);
+			return;
+		}
+		setUserPerformance(adaptPerformance(userPerformance));
+	}
+},[id, mocked]);
 
 
 if (error) {

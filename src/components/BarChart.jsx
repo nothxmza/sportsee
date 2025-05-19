@@ -14,14 +14,15 @@ const CustomTooltip = ({ active, payload }) => {
 }
 
 
-export const BarCharts = ({data}) => {
+export const BarCharts = (data) => {
 
+	data = data.data || data;
 	return (
 		<div style={{ width: "100%", height: "200px", position: "relative"}}>
 			<h2 style={{ margin: 0, fontSize: 15, top: -50, position: "absolute", color: "#20253A", fontWeight: 500 }}>Activité quotidienne</h2>
 			<ResponsiveContainer width="100%" height="100%">
 				<BarChart
-					data={data.data.sessions}
+					data={data.data ? data.data.sessions : data.sessions}
 					margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
 					barSize={7}
 					barGap={8}

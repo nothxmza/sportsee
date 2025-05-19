@@ -1,4 +1,5 @@
-export const adaptPerformance = ({data}) => {
+export const adaptPerformance = (data) => {
+	data = data.data || data;
 
 	const kindTranslations = {
 		cardio: "Cardio",
@@ -11,15 +12,20 @@ export const adaptPerformance = ({data}) => {
 
 	const adaptedData = {
 		userId: data.userId,
-		data: data.data.map((i) => ({
+		data: data.data?  data.data.map((i) => ({
 			value: i.value,
 			kind: kindTranslations[data.kind[i.kind]],
+		})) : data.map((i) => ({
+			value: i.value,
+			kind: kindTranslations[i.kind],
 		})),
 	}
 	return adaptedData;
 }
 
-export const adaptUserData = ({data}) => {
+export const adaptUserData = (data) => {
+	data = data.data || data;
+
 	const adaptedData = {
 		id: data.id,
 		score: data.todayScore || data.score,

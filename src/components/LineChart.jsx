@@ -26,13 +26,15 @@ const CustomCursor = ({points, width}) => {
 }
 
 export const LineCharts = ({data}) => {
+	data = data.data || data;
+
 	const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
 	return(
 		<div style={{ width: "100%", height: "100%", backgroundColor: "#FF0000", padding: "0px", position: "relative", borderRadius: "5px"}}>
 			<h2 style={{position: "absolute", color: "#FFFFFF99", fontSize: "15px", fontWeight: "bold", top: 20, left: 20}}>Durée moyenne des <br/> sessions</h2>
 			<ResponsiveContainer width="100%" height="100%">
 				<LineChart
-					data={data.data.sessions}
+					data={data.data ? data.data.sessions : data.sessions}
 					margin={{ top: 0, right: 20, left: 20, bottom: 30 }}
 				>
 					<XAxis dataKey="day"  tickLine={false} axisLine={false} interval="preserveStartEnd" tickFormatter={(day,i) => daysOfWeek[i]}
