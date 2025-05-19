@@ -38,8 +38,8 @@ export const LineCharts = ({data}) => {
 					<XAxis dataKey="day"  tickLine={false} axisLine={false} interval="preserveStartEnd" tickFormatter={(day,i) => daysOfWeek[i]}
 						tickMargin={20} tick={{fontSize: 12, fill: "#FFFFFF83"}}/>
 					<Tooltip content={<CustomTooltip/>} cursor={<CustomCursor />}/>
-					<YAxis hide={true} domain={[0, "dataMax + 40"]} tickLine={false} axisLine={false} />
-					<Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF" strokeWidth={2} dot={false}  activeDot={{stroke: "#FFFFFF99", strokeWidth: 10, r: 5}}/>
+					<YAxis hide={true} domain={[0, "dataMax + 60"]} tickLine={false} axisLine={false} />
+					<Line type="natural" dataKey="sessionLength" stroke="#FFFFFF" strokeWidth={2} dot={false}  activeDot={{stroke: "#FFFFFF99", strokeWidth: 10, r: 5}}/>
 				</LineChart>
 			</ResponsiveContainer>
 		</div>
