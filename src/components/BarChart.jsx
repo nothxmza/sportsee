@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Cart
 import "../App.css"
 
 const CustomTooltip = ({ active, payload }) => {
-	if (active && payload && payload.length) {
+	if (active && payload) {
 		return (
 			<div style={{ backgroundColor: "#E60000", padding: "10px", borderRadius: "5px", fontSize: "12px", color: "white" }}>
 				<p>{`${payload[0].value} kg`}</p>
