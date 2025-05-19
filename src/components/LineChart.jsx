@@ -36,7 +36,7 @@ export const LineCharts = ({data}) => {
 					data={data.data.sessions}
 					margin={{ top: 0, right: 20, left: 20, bottom: 30 }}
 				>
-					<XAxis dataKey="day"  tickLine={false} axisLine={false} interval="preserveStartEnd" tickFormatter={(day) => daysOfWeek[day - 1]}
+					<XAxis dataKey="day"  tickLine={false} axisLine={false} interval="preserveStartEnd" tickFormatter={(day,i) => daysOfWeek[i]}
 						tickMargin={20} tick={{fontSize: 12, fill: "#FFFFFF83"}}/>
 					<Tooltip content={<CustomTooltip/>} cursor={<CustomCursor />}/>
 					<YAxis hide={true} domain={[0, "dataMax + 40"]} tickLine={false} axisLine={false} />
