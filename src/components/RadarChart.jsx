@@ -1,5 +1,5 @@
 import React from 'react';
-import { RadarChart, Radar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, PolarAngleAxis, PolarGrid, PolarRadiusAxis } from 'recharts';
+import { RadarChart, Radar, Tooltip, ResponsiveContainer, PolarAngleAxis, PolarGrid } from 'recharts';
 
 
 export const RadarCharts = ({data}) => {
