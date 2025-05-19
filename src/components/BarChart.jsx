@@ -11,7 +11,6 @@ const CustomTooltip = ({ active, payload }) => {
 			</div>
 		);
 	}
-	return null;
 }
 
 
