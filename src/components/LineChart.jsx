@@ -17,7 +17,6 @@ const CustomCursor = ({points, width}) => {
 	return (
 		<Rectangle
 			fill="#0000001A"
-			stroke="#0000001A"
 			x={x}
 			y={y}
 			width={width + 20}
